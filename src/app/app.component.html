@@ -1,0 +1,47 @@
+
+<div style="text-align:center; margin-bottom:70px;">
+  <h1>
+    ToDoList
+  </h1>
+  <h6>Made by Tsapaev Egor ;)</h6>
+</div>
+
+<!--форма заполнения-->
+<form>
+  <div id="addfield">
+  <input id="name" type="text"  [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Название">
+  <textarea id="description" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" placeholder="Опишите вашу задачу" maxlength="200"></textarea>
+  <input id="date" type="date"  [(ngModel)]="date" [ngModelOptions]="{standalone: true}" min="{{currentDate}}">
+    <input id="button_add" type="button" value="Записать" (click)="addTask(name,description,date)">
+  </div>
+</form>
+
+<!--Все существующие задачи-->
+<table  *ngFor="let task of tasks; let i = index" [ngStyle]="{background:taskStatus(i)}"  cellpadding="2">
+  <tr>
+    <th class="taskname"><p>{{task.name}}</p></th>
+    <th class="taskdescription">
+      <p style="float:left">Описание:</p>
+      <input class="show" type="image" src="assets/images/right.gif" (click)="showDesc(i)">
+      <p class="descript" *ngIf="task.showDesc==true">{{task.description}}</p>
+    </th>
+    <th class="taskdate"><p>Срок выполнения:{{task.date}}</p></th>
+    <th class="tasklevel">
+      <input *ngIf="i>0" type="button" value="Вверх" (click)="upTask(i)">
+      <input *ngIf="i<tasks.length-1" type="button" value="Вниз" (click)="downTask(i)">
+    </th>
+    <th class="taskdelete"><input type="button" value="Удалить" (click)="deleteTask(i)"></th>
+  </tr>
+  <tr *ngIf="task.trigger==true">
+    <th><input id="changename" type="text" [(ngModel)]="changedname" [ngModelOptions]="{standalone: true}"></th>
+    <th><input id="changedescription" type="text" [(ngModel)]="changeddescription" [ngModelOptions]="{standalone: true}"></th>
+    <th><input id="changedate" type="date" [(ngModel)]="changeddate" [ngModelOptions]="{standalone: true}" min="{{currentDate}}"></th>
+    <th><input type="button" *ngIf="task.trigger==true" value="Сохранить" (click)="save(i,changedname, changeddescription, changeddate)"></th>
+  </tr>
+  <tr id="stringchange">
+    <input id="change" type="button" id="change" value="Редактировать" (click)="changeTask(i)">
+  </tr>
+</table>
+
+
+
