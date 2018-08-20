@@ -61,14 +61,15 @@ h6{
     font-weight:700;
     font-size:13pt;
     font-family:"Roboto";
+    transition: 0.5s;
+}
+
+#button_add:hover{
+    background-color: rgb(180, 224, 249);
 }
 
 table {
-     border-collapse: collapse;
      margin:auto;
-     border-width: 0 px;
-     border-color: rgb(0, 0, 0);
-     border-style: solid;
      background-color: rgb(194, 217, 255);
      width: 1479px;
      height: 95px;
@@ -129,8 +130,12 @@ p{
     background-color: rgb(255, 255, 255);
     width: 330px;
     height: 30px;
-    margin:10px 174% -7px;
-    z-index: 7;
+    margin:15px 23% 8px;
+    position:absolute;
+    transition: 0.5s;
+}
+#change:hover{
+    background-color: rgb(195, 222, 251);
 }
 #stringchange{
     height:30px;
